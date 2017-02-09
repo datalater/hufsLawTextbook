@@ -66,7 +66,7 @@ class parsing_class():
             textbook_tag = html2.find(text=re.compile("Textbooks")).parent.parent.parent.next_sibling.next_sibling
             textbook_tag = textbook_tag.text
             textbook_tag = repr(textbook_tag)
-            textbook_tag = textbook_tag.replace("  ","").replace("\r"," ")
+            textbook_tag = textbook_tag.replace("\\r","\n").replace("  ","")
 
             print(self.course_name+"("+self.course_number+")"+"\n"+self.course_professor+"\n"+textbook_tag)
             print("===================================")
