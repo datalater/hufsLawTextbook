@@ -74,7 +74,7 @@ class parsing_class():
             # print("**********DEBUGGING: "+self.course_name+"("+self.course_number+")")
             # reference_tag = html2.find(text=re.compile("Reference")).parent
             # print(reference_tag)
-            # 내용: Reference가 페이지 내 유일한 키워드가 아닌 경우 있었음. 그래서 괄호를 넣어서 "\(Reference\)"라고 명시해줌으로써 해결함. 정규식에서 괄호는 예약어이므로 escape문자인 \를 붙여야 한다.
+            # 내용: 고정템플릿에 사용된 Reference라는 단어가 페이지 내 유일한 키워드가 아닌 경우 있었음(책제목에 포함). 그래서 괄호를 넣어서 "\(Reference\)"라고 명시해줌으로써 해결함. 참고로 정규식에서 괄호는 예약어이므로 escape문자인 \를 붙여야 한다.
             # 디버깅-end-
             
             reference_tag = html2.find(text=re.compile("\(Reference\)")).parent.parent.parent.next_sibling.next_sibling
