@@ -70,11 +70,11 @@ class parsing_class():
             html2 = BeautifulSoup(self.syllabus.text, "html.parser")
             textbook_tag = html2.find(text=re.compile("Textbooks")).parent.parent.parent.next_sibling.next_sibling
 
-            # 디버깅
+            # 디버깅-start-
             print("**********DEBUGGING: "+self.course_name+"("+self.course_number+")")
             reference_tag = html2.find(text=re.compile("Reference")).parent.parent
             print(reference_tag)
-            
+            # 디버깅-end-
             
             reference_tag = html2.find(text=re.compile("Reference")).parent.parent.parent.next_sibling.next_sibling
             
