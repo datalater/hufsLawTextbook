@@ -13,7 +13,7 @@ class parsing_class():
     # 클래스가 생성되자마자 시작되는 __init__ 함수 정의
     def __init__(self):
 
-        # 브라우저를 켠다.
+        # 브라우저를 켜는 함수를 바인딩하는 변수를 만든다.
         self.current_session = requests.session()
 
         # 2017년 1학기 법전원 옵션을 선택한다.
@@ -27,7 +27,7 @@ class parsing_class():
             'ag_crs_strct_cd':'LAAA1_H1'
             }
 
-        # 브라우저에서 POST로 접속한다.
+        # 브라우저를 켜고 POST로 접속한다.
         self.current_session.post(timetable_url,data=params,headers=head)
 
         # POST로 접속하는 개체를 변수로 바인딩한다.
@@ -57,7 +57,7 @@ class parsing_class():
             # 학수번호가 포함된 강의계획서 url을 만든다.
             syllabus_url = timetable_url_law+self.course_number
 
-            # 브라우저에서 GET으로 강의계획서에 접속한다.
+            # 현재 브라우저에서 GET으로 강의계획서에 접속한다.
             self.current_session.get(syllabus_url,headers=head)
 
             # GET으로 접속하는 개체를 변수로 바인딩한다.
