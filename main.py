@@ -64,11 +64,17 @@ class parsing_class():
             # 크롤링을 시작한다.
             html2 = BeautifulSoup(self.syllabus.text, "html.parser")
             textbook_tag = html2.find(text=re.compile("Textbooks")).parent.parent.parent.next_sibling.next_sibling
+            reference_tag = html2.find(text=re.compile("Reference")).parent.parent.parent.next_sibling.next_sibling
+            
             textbook_tag = textbook_tag.text
             textbook_tag = repr(textbook_tag)
             textbook_tag = textbook_tag.replace("\\r","\n").replace("  ","")
 
-            print(self.course_name+"("+self.course_number+")"+"\n"+self.course_professor+"\n"+textbook_tag)
+            reference_tag = reference_tag.text
+            reference_tag = repr(reference_tag)
+            reference_tag = reference_tag.replace("\\r","\n").replace("  ","")
+
+            print(self.course_name+"("+self.course_number+")"+"\n"+self.course_professor+"\n"+"<교재> "+textbook_tag+"\n"+"<참고문헌>"+reference_tag)
             print("===================================")
             print("===================================")
 
