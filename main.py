@@ -9,6 +9,8 @@ timetable_url = "http://webs.hufs.ac.kr:8989/src08/jsp/lecture/LECTURE2020L.jsp"
 timetable_url_law = "http://webs.hufs.ac.kr:8989/src08/jsp/lecture/syllabus.jsp?mode=print&ledg_year=2017&ledg_sessn=1&org_sect=L&lssn_cd="
 
 class parsing_class():
+
+    # 클래스가 생성되자마자 시작되는 __init__ 함수 정의
     def __init__(self):
 
         # 브라우저를 켠다.
@@ -25,7 +27,7 @@ class parsing_class():
             'ag_crs_strct_cd':'LAAA1_H1'
             }
 
-        # POST로 접속한다.
+        # 브라우저에서 POST로 접속한다.
         self.current_session.post(timetable_url,data=params,headers=head)
 
         # POST로 접속하는 개체를 변수로 바인딩한다.
@@ -55,10 +57,10 @@ class parsing_class():
             # 학수번호가 포함된 강의계획서 url을 만든다.
             syllabus_url = timetable_url_law+self.course_number
 
-            # GET으로 강의계획서에 접속한다.
+            # 브라우저에서 GET으로 강의계획서에 접속한다.
             self.current_session.get(syllabus_url,headers=head)
 
-            # GET으로 접속한 개체를 변수로 바인딩한다.
+            # GET으로 접속하는 개체를 변수로 바인딩한다.
             self.syllabus = self.current_session.get(syllabus_url,headers=head)
 
             # 크롤링을 시작한다.
