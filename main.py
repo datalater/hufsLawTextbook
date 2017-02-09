@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import re
 
 
+# 법학도서관 지정도서 작업을 위해 "법전원 2017-1학기 수업별 교재목록"을 parsing하는 프로젝트
+
+
 head={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'}
 timetable_url = "http://webs.hufs.ac.kr:8989/src08/jsp/lecture/LECTURE2020L.jsp"
 timetable_url_law = "http://webs.hufs.ac.kr:8989/src08/jsp/lecture/syllabus.jsp?mode=print&ledg_year=2017&ledg_sessn=1&org_sect=L&lssn_cd="
@@ -66,12 +69,19 @@ class parsing_class():
             # 크롤링을 시작한다.
             html2 = BeautifulSoup(self.syllabus.text, "html.parser")
             textbook_tag = html2.find(text=re.compile("Textbooks")).parent.parent.parent.next_sibling.next_sibling
+
+            # 디버깅
+            print("**********DEBUGGING: "+self.course_name+"("+self.course_number+")")
+            reference_tag = html2.find(text=re.compile("Reference")).parent.parent
+            print(reference_tag)
+            
+            
             reference_tag = html2.find(text=re.compile("Reference")).parent.parent.parent.next_sibling.next_sibling
             
             textbook_tag = textbook_tag.text
             textbook_tag = repr(textbook_tag)
             textbook_tag = textbook_tag.replace("\\r","\n").replace("  ","")
-
+            
             reference_tag = reference_tag.text
             reference_tag = repr(reference_tag)
             reference_tag = reference_tag.replace("\\r","\n").replace("  ","")
