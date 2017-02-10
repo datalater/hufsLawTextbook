@@ -40,8 +40,10 @@ class parsing_class():
         html = BeautifulSoup(self.timetable.text, "html.parser")
         tr_courses = html.find_all("tr", attrs={"height":"55"})
 
-        # .txt 파일로 저장하기 위해 특정 경로의 .txt파일을변수로 바인딩한다. 여기서 encoding='UTF-8'을 반드시 써야만 web에 있는 bytes들이 제대로 decode된다. 그렇지 않으면 cp949 오류가 난다.
-        f = open("C:/Users/hufs/Downloads/download/lawjmc/법전원2017-1학기-교재목록.txt", 'w', encoding='UTF-8')
+        # .txt 파일로 저장하기 위해 특정 경로의 .txt파일을변수로 바인딩한다.
+        # 여기서 encoding='UTF-8'을 반드시 써야만 web에 있는 bytes들이 제대로 decode된다.
+        # 그렇지 않으면 인코딩 방식 간 충돌로 인해 "cp949 can't..."과 같은 오류가 난다.
+        f = open("C:/Users/hufs/Downloads/download/lawjmc/new/법전원2017-1학기-교재목록.txt", 'w', encoding='UTF-8')
         
         # 학수번호, 교과목명, 교수명을 담는다.
         for tr_course in tr_courses:
@@ -90,6 +92,7 @@ class parsing_class():
             reference_tag = repr(reference_tag)
             reference_tag = reference_tag.replace("\\r","\n").replace("  ","")
 
+            # 스크랩 내용을 텍스트 파일로 저장하기 위해 f변수를 사용하고 아래 print 출력문은 주석처리한다.
             #print(self.course_name+"("+self.course_number+")"+"\n"+self.course_professor+"\n"+"<교재> "+textbook_tag+"\n"+"<참고문헌> "+reference_tag)
             #print("===================================")
             #print("===================================")
